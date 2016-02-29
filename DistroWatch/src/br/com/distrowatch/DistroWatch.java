@@ -12,6 +12,7 @@ public class DistroWatch {
 	public static DistroWatch getInstance() {
 
 		if (distroWatch == null) {
+			
 			distroWatch = new DistroWatch();
 		}
 
