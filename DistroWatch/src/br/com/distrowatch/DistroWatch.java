@@ -40,7 +40,4 @@ public class DistroWatch {
 		distribution.store(distribuicao);
 	}
 
-	public void deletarDistribuicao(ObjectContainer distribuicao) {
-
-	}
 }
