@@ -11,14 +11,14 @@ public class Test {
 
 	public static void main(String[] args) throws JSONException {
 
-		initializeModel("ubuntu");
-		initializeModel("mint");
-		Rest rest = new Rest(distribuicao);
+		initializeDistroWatch("ubuntu");
+		initializeDistroWatch("mint");
+		Rest rest = new Rest();
 		rest.makeRoute();
 
 	}
 
-	public static void initializeModel(String versao) {
+	public static void initializeDistroWatch(String versao) {
 
 		LinkedHashMap<String, String> dados = Raspagem.getDadosDistroWatch(versao);
 		LinkedHashMap<String, String> cabecalho = Raspagem.getCabecalhoDistroWatch();

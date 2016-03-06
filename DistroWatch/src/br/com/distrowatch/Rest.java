@@ -14,10 +14,6 @@ public class Rest {
 
 	Distribuicao distribuicao;
 
-	public Rest(Distribuicao store) {
-		this.distribuicao = store;
-	}
-
 	public void makeRoute() {
 
 		get(new Route("/distrowatch/:distribuicao") {
@@ -27,7 +23,7 @@ public class Rest {
 				String nomeDistribuicao = String.valueOf(request.params(":distribuicao"));
 
 				try {
-					Distribuicao distribuicao = DistroWatch.getInstance().buscaPorDistribuicao(nomeDistribuicao);
+					distribuicao = DistroWatch.getInstance().buscaPorDistribuicao(nomeDistribuicao);
 
 					JSONArray jsonResult = new JSONArray();
 					JSONObject jsonObj = new JSONObject();
