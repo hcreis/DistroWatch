@@ -2,6 +2,8 @@ package br.com.distrowatch;
 
 import static spark.Spark.get;
 
+import java.util.ArrayList;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -16,7 +18,7 @@ public class Rest {
 
 	public void makeRoute() {
 
-		get(new Route("/distrowatch/:distribuicao") {
+		get(new Route("/distrowatch/nomedistribuicao/:distribuicao") {
 			@Override
 			public Object handle(Request request, Response response) {
 
@@ -32,10 +34,10 @@ public class Rest {
 					jsonObj.put("Baseado Em", distribuicao.getSpec().getBaseadoEm());
 					jsonObj.put("Origem", distribuicao.getSpec().getOrigem());
 					jsonObj.put("Tipo SO", distribuicao.getSpec().getTipoSo());
-					
+
 					jsonObj.put("Distribuicao", distribuicao.getDistribuicao().replace(" \u2022 ", "|"));
 					jsonObj.put("Pagina Inicial", distribuicao.getPagInicial().replace(" \u2022 ", "|"));
-					jsonObj.put("Lista E-mails", distribuicao.getListaEmails().replace(" \u2022 ", "|"));					
+					jsonObj.put("Lista E-mails", distribuicao.getListaEmails().replace(" \u2022 ", "|"));
 					jsonObj.put("Foruns de Usuarios", distribuicao.getForuns().replace(" \u2022 ", "|"));
 					jsonObj.put("Foruns Alternativos", distribuicao.getForunsAlternativos().replace(" \u2022 ", "|"));
 					jsonObj.put("Documentacao", distribuicao.getDocumentacao().replace(" \u2022 ", "|"));
@@ -45,7 +47,7 @@ public class Rest {
 					jsonObj.put("Bug Tracker", distribuicao.getBugTracker().replace(" \u2022 ", "|"));
 					jsonObj.put("Sites Relacionados", distribuicao.getSitesRelacionados().replace(" \u2022 ", "|"));
 					jsonObj.put("Revisoes", distribuicao.getRevisoes().replace(" \u2022 ", "|"));
-					jsonObj.put("Onde Comprar", distribuicao.getOndeComprar().replace(" \u2022 ", "|"));					
+					jsonObj.put("Onde Comprar", distribuicao.getOndeComprar().replace(" \u2022 ", "|"));
 
 					jsonResult.put(jsonObj);
 
@@ -61,5 +63,52 @@ public class Rest {
 			}
 
 		});
+
+		get(new Route("/distrowatch/tipoarquitetura/:arquitetura") {
+			@Override
+			public Object handle(Request request, Response response) {
+
+				String nomeArquitetura = String.valueOf(request.params(":arquitetura").replace("%20", " "));
+
+				try {
+					ArrayList<Distribuicao> allDistPorEspecificacao = DistroWatch.getInstance()
+							.buscaPorEspecificacao(nomeArquitetura);
+
+					JSONArray jsonResult = new JSONArray();
+					JSONObject jsonObj = null;
+
+					for (Distribuicao distribuicao : allDistPorEspecificacao) {
+						
+						jsonObj = new JSONObject();
+						jsonObj.put("Distribuicao", distribuicao.getDistribuicao().replace(" \u2022 ", "|"));
+						jsonObj.put("Pagina Inicial", distribuicao.getPagInicial().replace(" \u2022 ", "|"));
+						jsonObj.put("Lista E-mails", distribuicao.getListaEmails().replace(" \u2022 ", "|"));
+						jsonObj.put("Foruns de Usuarios", distribuicao.getForuns().replace(" \u2022 ", "|"));
+						jsonObj.put("Foruns Alternativos",distribuicao.getForunsAlternativos().replace(" \u2022 ", "|"));
+						jsonObj.put("Documentacao", distribuicao.getDocumentacao().replace(" \u2022 ", "|"));
+						jsonObj.put("Screenshots", distribuicao.getScreenshots().replace(" \u2022 ", "|"));
+						jsonObj.put("Screencasts", distribuicao.getScreenCast().replace(" \u2022 ", "|"));
+						jsonObj.put("Download", distribuicao.getDownload().replace(" \u2022 ", "|"));
+						jsonObj.put("Bug Tracker", distribuicao.getBugTracker().replace(" \u2022 ", "|"));
+						jsonObj.put("Sites Relacionados", distribuicao.getSitesRelacionados().replace(" \u2022 ", "|"));
+						jsonObj.put("Revisoes", distribuicao.getRevisoes().replace(" \u2022 ", "|"));
+						jsonObj.put("Onde Comprar", distribuicao.getOndeComprar().replace(" \u2022 ", "|"));
+
+						jsonResult.put(jsonObj);
+					}
+
+					return jsonResult;
+
+				} catch (JSONException e) {
+
+					e.printStackTrace();
+				}
+
+				return null;
+
+			}
+
+		});
+
 	}
 }
