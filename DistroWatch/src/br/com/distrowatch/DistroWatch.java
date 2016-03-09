@@ -39,7 +39,7 @@ public class DistroWatch {
 		return null;
 	}
 	
-	public ArrayList<Distribuicao> buscaPorEspecificacao(String nomeArquitetura)
+	public ArrayList<Distribuicao> buscaPorArquitetura(String nomeArquitetura)
 	{
 		ArrayList<Distribuicao> allDistPorEspecificacao = new ArrayList<Distribuicao>();
 		Query query = distribution.query();

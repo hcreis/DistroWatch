@@ -14,8 +14,6 @@ import spark.Route;
 
 public class Rest {
 
-	Distribuicao distribuicao;
-
 	public void makeRoute() {
 
 		get(new Route("/distrowatch/nomedistribuicao/:distribuicao") {
@@ -25,7 +23,7 @@ public class Rest {
 				String nomeDistribuicao = String.valueOf(request.params(":distribuicao"));
 
 				try {
-					distribuicao = DistroWatch.getInstance().buscaPorDistribuicao(nomeDistribuicao);
+					Distribuicao distribuicao = DistroWatch.getInstance().buscaPorDistribuicao(nomeDistribuicao);
 
 					JSONArray jsonResult = new JSONArray();
 					JSONObject jsonObj = new JSONObject();
@@ -72,7 +70,7 @@ public class Rest {
 
 				try {
 					ArrayList<Distribuicao> allDistPorEspecificacao = DistroWatch.getInstance()
-							.buscaPorEspecificacao(nomeArquitetura);
+							.buscaPorArquitetura(nomeArquitetura);
 
 					JSONArray jsonResult = new JSONArray();
 					JSONObject jsonObj = null;
