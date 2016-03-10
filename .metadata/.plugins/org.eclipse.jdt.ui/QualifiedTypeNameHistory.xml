@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="java.lang.Object"/>
+<fullyQualifiedTypeName name="com.db4o.ObjectSet"/>
+<fullyQualifiedTypeName name="br.com.distrowatch.Especificacao"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="br.com.distrowatch.Distribuicao"/>
+<fullyQualifiedTypeName name="java.util.LinkedHashMap"/>
+<fullyQualifiedTypeName name="br.com.distrowatch.DistroWatch"/>
+</qualifiedTypeNameHistroy>

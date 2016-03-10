@@ -20,8 +20,8 @@ public class Test {
 
 	public static void initializeDistroWatch(String versao) {
 
-		LinkedHashMap<String, String> dados = Raspagem.getDadosDistroWatch(versao);
-		LinkedHashMap<String, String> cabecalho = Raspagem.getCabecalhoDistroWatch();
+		LinkedHashMap<String, String> dados = DistroWatch.getInstance().getDadosDistroWatch(versao);
+		LinkedHashMap<String, String> cabecalho = DistroWatch.getInstance().getCabecalhoDistroWatch();
 		
 		Especificacao spec = new Especificacao();
 		spec.setTipoSo(cabecalho.get("OS Type"));

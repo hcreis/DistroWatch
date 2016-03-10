@@ -26,7 +26,7 @@ public class DistroWatch {
 
 	public Distribuicao buscaPorDistribuicao(String nomeDistribuicao) {
 		Query query = distribution.query();
-		query.constrain(Distribuicao.class);
+		query.constrain(Distribuicao.class);		
 		ObjectSet<Distribuicao> allDistribuicao = query.execute();
 
 		for (Distribuicao distribuicao : allDistribuicao) {
@@ -60,5 +60,15 @@ public class DistroWatch {
 
 	public void adicionarDistribuicao(Distribuicao distribuicao) {
 		distribution.store(distribuicao);
+	}
+	
+	public LinkedHashMap<String, String> getDadosDistroWatch(String versao)
+	{
+		return Raspagem.getDadosDistroWatch(versao);		
+	}
+	
+	public LinkedHashMap<String, String> getCabecalhoDistroWatch()
+	{
+		return Raspagem.getCabecalhoDistroWatch();
 	}
 }
